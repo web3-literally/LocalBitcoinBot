@@ -243,6 +243,17 @@ class LocalBitcoin:
         return self.sendRequest(endpoint, '', 'get')
 
     """
+    Lists sell Bitcoin online ads
+    """
+    def getOnlineSellAds(self, countryCode, countryName, paymentMethod=None):
+        endpoint = '/sell-bitcoins-online/' + countryCode + '/' + countryName
+        if (paymentMethod):
+            endpoint += '/' + paymentMethod
+        endpoint += '/.json'
+
+        return self.sendRequest(endpoint, '', 'get')
+
+    """
     Calculates the current price for bitcoin with the specified equation.
     """
     def getBitcoinPrice(self, equation):
