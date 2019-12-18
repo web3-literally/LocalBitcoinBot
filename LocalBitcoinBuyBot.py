@@ -46,7 +46,8 @@ class LocalBitcoinBuyBot():
             # filter ad which matches condition
             if (ad['data']['trade_type'] == 'ONLINE_BUY'
                     and self.changeToApiFormat(ad['data']['countrycode']) == self.country_code
-                    and self.changeToApiFormat(ad['data']['online_provider']) == self.payment_method):
+                    and (self.changeToApiFormat(ad['data']['online_provider']) == self.payment_method
+                         or (self.changeToApiFormat(ad['data']['online_provider']) == 'other' and self.payment_method == 'other-online-payment'))):
                 # cur_price_in_usd = float(ad['data']['temp_price_usd']);
                 # if (price_in_usd > cur_price_in_usd):       # only update when the new price is higher than my ads buy price
                 # always update my ad into new price
@@ -97,7 +98,7 @@ class LocalBitcoinBuyBot():
         else:
             self.refresh_interval = 10
         self.isRunning = True
-        self.lcAgent = LocalBitcoin.LocalBitcoin(self.auth_key, self.auth_secret, False)
+        self.lcAgent = LocalBitcoin.LocalBitcoin(self.auth_key, self.auth_secret, True)
         self.runningThread = threading.Thread(target=self.runFunc)
         self.runningThread.start()
         print('buy bot thread started')
