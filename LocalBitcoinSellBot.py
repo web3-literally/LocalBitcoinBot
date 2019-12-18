@@ -46,7 +46,9 @@ class LocalBitcoinSellBot():
             # filter ad which matches condition
             if (ad['data']['trade_type'] == 'ONLINE_SELL'
                     and self.changeToApiFormat(ad['data']['countrycode']) == self.country_code
-                    and self.changeToApiFormat(ad['data']['online_provider']) == self.payment_method):
+                    and (self.changeToApiFormat(ad['data']['online_provider']) == self.payment_method
+                         or (self.changeToApiFormat(ad['data'][
+                                                        'online_provider']) == 'other' and self.payment_method == 'other-online-payment'))):
                 # cur_price_in_usd = float(ad['data']['temp_price_usd']);
                 # if (price_in_usd < cur_price_in_usd):       # only update when the new price is lower than my ads sell price
                 # always update my ad into new price
