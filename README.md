@@ -6,6 +6,6 @@ LocalBitcoin Buy/Sell bot
 
 > If you have some problem when you use this repository, Please contact me to follow Address.
 
-Skype -> live:smiling.cstar
+Skype -> live:force.top_1
 
-Email -> bluedragon.cstar@gmail.com
+Email -> willcomeo022@gmail.com
